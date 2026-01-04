@@ -1,0 +1,2 @@
+- One of the primary advantages of using Pthreads is the level of control they offer to the developer. Pthreads allow developers to specify the number of threads, the scheduling policy, the synchronisation mechanism used to coordinate access to shared resources.
+- However the level of control also comes with a cost. Pthreads are relatively complex, requiring developers to manage issues such as race conditions, deadlocks and thread synchronisation.
