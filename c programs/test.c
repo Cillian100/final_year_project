@@ -5,69 +5,48 @@ void print_array(int array[], int low, int high){
   for(int a=low; a<=high; a++){
     printf("%d ", array[a]);
   }
+
   printf("\n");
 }
 
-void merge(int array[], int low, int middle, int high){
-  int n1=middle+1-low;
-  int n2=high-middle;
-  int L[n1], R[n2];
-  printf("%d %d\n", n1, n2);
-
-  for(int a=0;a<n1;a++){
-    L[a]=array[low+a];
+void comp_and_swap(int array[], int i, int j, int direction){
+  if((direction==1 && array[i]>array[j]) || (direction==0 && array[j]>array[i])){
+    int temp=array[i];
+    array[i]=array[j];
+    array[j]=temp;
   }
-  for(int a=0;a<n2;a++){
-    R[a]=array[middle+1+a];
-  }
+}
 
-  int pointer1=0, pointer2=0, pointer3=low;
-
-  while(pointer1 < n1 && pointer2 < n2){
-    if(L[pointer1] < R[pointer2]){
-      array[pointer3]=L[pointer1];
-      pointer1++;
-    }else{
-      array[pointer3]=R[pointer2];
-      pointer2++;
+void bitonic_merge(int array[], int low, int count, int direction){
+  if(count > 1){
+    int k = count / 2;
+    
+    for(int i=low; i<low+k; i++){
+      comp_and_swap(array, i, i+k, direction);
     }
-    pointer3++;
-  }
 
-  while(pointer1 < n1){
-    array[pointer3]=L[pointer1];
-    pointer1++;
-    pointer3++;
-  }
-
-  while(pointer2 < n2){
-    array[pointer3]=R[pointer2];
-    pointer2++;
-    pointer3++;
+    bitonic_merge(array, low, k, direction);
+    bitonic_merge(array, low + k, k, direction);
   }
 }
 
-void merge_sort(int array[], int low, int high){
-  if(low<high){
-    int middle=(low+high)/2;
+void bitonic_sort(int array[], int low, int count, int direction){
+  if(count > 1){
+    int k = count / 2;
 
-    merge_sort(array, low, middle);
-    merge_sort(array, middle+1, high);
+    bitonic_sort(array, low, k, 1);
+    bitonic_sort(array, low + k, k, 0);
 
-    merge(array, low, middle, high);
+    bitonic_merge(array, low, count, direction);
   }
 }
-
 
 int main(){
-  int array[]={10, 14, 63, 23, 61, 24, 76, 29, 65, 3};
+  int array[]={19, 2, 72, 3, 18, 57, 603, 101};
 
   int array_size = sizeof(array) / sizeof(array[0]);
-  merge_sort(array, 0, array_size-1);
+
+  bitonic_sort(array, 0, array_size, 1);
   
-  //merge(array, 0, 2, 4);
   print_array(array, 0, array_size-1);
-
-
-
 }
