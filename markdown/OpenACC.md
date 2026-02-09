@@ -1,4 +1,0 @@
-- OpenACC is a popular programming model for accelerating compute intensive tasks on accelerator architecture such as GPUs.
-- In the OpenACC programming model, a hosting thread running on a CPU core manages and coordinates the execution of a kernel on an accelerator.
-- While OpenACC shares many similarity with CUDA, there are some notable differences between the two approaches. OpenACC is a high level programming model that provides more abstraction and easier to use directives than CUDA.
-- It is essential to note than OpenACC does not inherently utilise idle CPU cores for computational tasks beyond running hosting threads. Consequently to achieve a hybrid programming model that effectively employs both CPU and accelerator resources, OpenACC needs to be supplemented by complementary tooks such as Pthreads or OpenMP.  
