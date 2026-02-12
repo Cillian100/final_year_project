@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexing>
+ <object alt="" name="Image1" object_type="graphic"/>
+ <paragraph index="12" node_type="writer">Parallel Sorting Algorithms On Hybrid Heterogeneous Servers</paragraph>
+ <object index="13" name="Table of Contents1" object_type="section"/>
+ <object index="14" name="Table of Contents1_Head" object_type="section"/>
+ <paragraph index="15" node_type="writer" parent_index="14">Table of Contents</paragraph>
+ <paragraph index="17" node_type="writer" parent_index="13">Abstract	1</paragraph>
+ <paragraph index="18" node_type="writer" parent_index="13">Introduction	1</paragraph>
+ <paragraph index="19" node_type="writer" parent_index="13">Related Work	1</paragraph>
+ <paragraph index="20" node_type="writer" parent_index="13">Architecture Specifications	1</paragraph>
+ <paragraph index="21" node_type="writer" parent_index="13">Multithreaded Cores and Multicore CPUs	1</paragraph>
+ <paragraph index="22" node_type="writer" parent_index="13">GPUs	1</paragraph>
+ <paragraph index="23" node_type="writer" parent_index="13">Cuda Device Architecture	2</paragraph>
+ <paragraph index="24" node_type="writer" parent_index="13">Threads, Blocks and Warps	2</paragraph>
+ <paragraph index="25" node_type="writer" parent_index="13">Shared Memory	2</paragraph>
+ <paragraph index="26" node_type="writer" parent_index="13">Tools For Parallel Programming	2</paragraph>
+ <paragraph index="27" node_type="writer" parent_index="13">OpenMP	2</paragraph>
+ <paragraph index="28" node_type="writer" parent_index="13">OpenACC	2</paragraph>
+ <paragraph index="29" node_type="writer" parent_index="13">OpenH	2</paragraph>
+ <paragraph index="30" node_type="writer" parent_index="13">CUDA	2</paragraph>
+ <paragraph index="31" node_type="writer" parent_index="13">GCC	3</paragraph>
+ <paragraph index="32" node_type="writer" parent_index="13">NVCC	3</paragraph>
+ <paragraph index="33" node_type="writer" parent_index="13">Sorting Algorithms	3</paragraph>
+ <paragraph index="34" node_type="writer" parent_index="13">Merging	3</paragraph>
+ <paragraph index="35" node_type="writer" parent_index="13">Merge Sort	3</paragraph>
+ <paragraph index="36" node_type="writer" parent_index="13">Radix Sort	3</paragraph>
+ <paragraph index="37" node_type="writer" parent_index="13">Optimizing Using Memory Coalescing	4</paragraph>
+ <paragraph index="38" node_type="writer" parent_index="13">Optimizing Using Thread Coarsening	4</paragraph>
+ <paragraph index="39" node_type="writer" parent_index="13">Measuring Performance	4</paragraph>
+ <paragraph index="40" node_type="writer" parent_index="13">Conclusions	4</paragraph>
+ <paragraph index="43" node_type="writer">Abstract</paragraph>
+ <paragraph index="44" node_type="writer">Sorting is one of the fundamental algorithms in computer science used in almost any area of area of computing with a large amount of data points or elements. Efficient sorting algorithms are becoming increasingly important as the size and scale of data continues to grow.</paragraph>
+ <paragraph index="45" node_type="writer">Hybrid heterogeneous servers featuring multicore CPUs hosting multiple accelerators (GPUs or FPGAs) dominate the computing landscape due to their ability to efficiently handle very large inputs by performing multiple operations at once.</paragraph>
+ <paragraph index="46" node_type="writer">Because of their importance, efficent sorting algorithms have been the subject of many computer computer science research. Even with these efficient algorithms, sorting large data is still time consuming and benefits from parallel execution. Parallelizing efficient sorting algorithms is challenging and requires efficient design.</paragraph>
+ <paragraph index="47" node_type="writer">Introduction</paragraph>
+ <paragraph index="48" node_type="writer">asdasd</paragraph>
+ <paragraph index="49" node_type="writer">Related Work</paragraph>
+ <paragraph index="50" node_type="writer">Programming Massively Parallel Processors </paragraph>
+ <paragraph index="51" node_type="writer">Architecture Specifications </paragraph>
+ <paragraph index="52" node_type="writer">asasdasd</paragraph>
+ <paragraph index="53" node_type="writer">Multithreaded Cores and Multicore CPUs </paragraph>
+ <paragraph index="54" node_type="writer">Multithreaded and multicore CPUs both exploit  concurrency by executing multiple threads, although their design target different objectives. Multithreaded CPUs support concurrent thread execution at the more fine-grained instruction level aiming at better utilizing the resources of CPUs by issuing instructions from multiple threads. Multicore CPUs achieve thread concurrency at a higher level, focusing less on utilization per core and aiming at scalability via replicating cores.</paragraph>
+ <paragraph index="55" node_type="writer">GPUs </paragraph>
+ <paragraph index="56" node_type="writer">The modern GPU has evolved from a fixed function graphics pipeline to programmable parallel processor with computing power exceeding that of multicore CPUs.</paragraph>
+ <paragraph index="57" node_type="writer">With NVIDIA’s Tesla architecture introduced in 2006 in the GeForce 8800 enabled high performance parallel computing applications written in the C programming language using the Computer Unified Device Architecture (CUDA) parallel programming model and development tools. </paragraph>
+ <paragraph index="58" node_type="writer">Cuda Device Architecture </paragraph>
+ <paragraph index="59" node_type="writer">asdasd</paragraph>
+ <paragraph index="60" node_type="writer">Threads, Blocks and Warps </paragraph>
+ <paragraph index="61" node_type="writer">To manage and execute hundreds of threads running several different programs efficiently, GPUs use a process architecture called single instruction multiple threads (SIMT). The SM’s SIMT multithreaded instruction unit creates, manages, schedules and executes threads in groups of 32 parallel threads called warps.  </paragraph>
+ <paragraph index="62" node_type="writer">Shared Memory </paragraph>
+ <paragraph index="63" node_type="writer">To support computing and C/C++ language needs the Tesla SM implements memory load/store instructions with three read/write memory spaces.
+ - local memory: for per thread, private temporary data (implemented in externel DRAM)
+ - shared memory: for low latency access to data shared by cooperating threads in the same SM.
+- global memory: for data shared by all threads of a computing application (implemented in external DRAM)</paragraph>
+ <paragraph index="64" node_type="writer">Shared memory is located on chip and as a result has a much higher bandwidth and lower latency than local and global memory. Shared memory enables cooperation between threads in a block, when multiple threads in a block use the same data from global memory, shared memory can also be used to access data  from global memory only once.</paragraph>
+ <paragraph index="65" node_type="writer">Shared memory is only accessible by threads within the same block, this can become a problem when sorting large inputs that are greater than the size of a block. Currently Tesla GPUs only support block sizes up to 1024.</paragraph>
+ <paragraph index="66" node_type="writer">Tools For Parallel Programming </paragraph>
+ <paragraph index="67" node_type="writer">This section describes the programming models and compilers required for parallel programming.</paragraph>
+ <paragraph index="68" node_type="writer">OpenMP </paragraph>
+ <paragraph index="69" node_type="writer">OpenMP is a parallel programming model for shared memory and distributed shared memory multiprocessors. It is comprised of a set of compiler directives that describe the parallelisms in the source code, along with a supporting library of subroutine available to application.</paragraph>
+ <paragraph index="70" node_type="writer">The directives are instructional notes to any compiler supporting OpenMP. They take the form of source code commens (in Fortran) or #pragma (in C/C++) in order to enhance application portability when porting to non-OpenMP environments.</paragraph>
+ <paragraph index="71" node_type="writer">OpenACC </paragraph>
+ <paragraph index="72" node_type="writer">In contrast to current mainstream GPU programming, such as CUDA and OpenCL, where more explicit compute and data management is necessary, porting of legacy CPU-based applications with OpenACC requires only code annotations without any significant structural changes in the original code, which allows considerable simplification and productivity improvement when hybridizing existing applications.</paragraph>
+ <paragraph index="73" node_type="writer">Programming with OpenACC directives, while greatly simplified is not as flexible as using CUDA or OpenCL. For example, both CUDA and OpenCL provide fine-grained synchronization primitives, such as thread synchronization and atomic operations whereas OpenACC does not.</paragraph>
+ <paragraph index="74" node_type="writer">OpenH </paragraph>
+ <paragraph index="75" node_type="writer">OpenH integrates Pthreads, OpenMP and OpenACC seamlessly to facilitate the development of hybrid parallel programs. An OpenH hybrid parallel program starts as a single main thread, creating a group of Pthreads called hosting Pthreads. A hosting Pthread then leads the execution of software components of the program, either on OpenMP multithreaded component running on the CPU cores or an OpenACC (or OpenMP) component running on one of the accelerators of the server.</paragraph>
+ <paragraph index="76" node_type="writer">CUDA </paragraph>
+ <paragraph index="77" node_type="writer">CUDA is a minimal extension of the C and C++ programming languages. A programmer writes a serial program that calls parallel kernels, which can be simple functions of full programs. The CUDA program executes parallel kernels across a set of parallel threads on the GPU. The programmer organizes these threads into a hierarchy of thread blocks and grids.</paragraph>
+ <paragraph index="78" node_type="writer">The CUDA programming model is similar in style to a single-program multiple data (SPMD) software model – it expresses parallelism explicitly, and each kernel executes on a fixed number of threads. However CUDA is more flexible than most SPMD implementations because each kernel call dynamically creates a new grid with the right number of thread blocks and threads for the application step.</paragraph>
+ <paragraph index="79" node_type="writer">GCC</paragraph>
+ <paragraph index="80" node_type="writer">GNU Compiler Collection is a collection of free and open source compilers from the GNU project. GCC supports OpenMP and OpenACC on NVIDIA GPU’s through a tool called nvptx-tools.</paragraph>
+ <paragraph index="81" node_type="writer">NVCC </paragraph>
+ <paragraph index="82" node_type="writer">NVIDIA CUDA Compiler is a proprietary compiler by NVIDIA intended for use with CUDA.</paragraph>
+ <paragraph index="83" node_type="writer">Sorting Algorithms</paragraph>
+ <paragraph index="84" node_type="writer">Sorting algorithms can be classified into stable and unstable algorithms. A stable sorting algorithm preserves the original order of appearance when two elements have equal key values. For example, when sorting the lost [(30, 150), (32, 80), (22, 45), (29, 80)] into a nonincreasing order using income as the key field, a stable sorting algorithm must guarantee that (32, 80) appears before (29, 80) because the former appears before the latter in the original input. An unstable sorting algorithm does not offer such guarantee.</paragraph>
+ <paragraph index="85" node_type="writer">Merging </paragraph>
+ <paragraph index="86" node_type="writer">Merging is a highly important algorithm for many sequential sorting algorithms, most notably the famous merge sort algorithm which we will cover later. But it is especially important in the context of parallel sorting algorithms on GPUs, this is because out input data can be much larger than the size of a single warp meaning that to efficiently make use of shared memory some merging might have to be used.</paragraph>
+ <paragraph index="87" node_type="writer">An ordered merge function takes two sorted lists A and B and merges them into a single sorted list C. We present a parallel ordered merge algorithm in which the input data for each thread is dynamically determined. The dynamic nature of the data access makes it challenging to exploit locality and tiling techniques for improved memory access efficient and performance.</paragraph>
+ <paragraph index="88" node_type="writer">Merge Sort </paragraph>
+ <paragraph index="89" node_type="writer">Merge sort sorting algorithm is a very prominent and efficient sorting algorithm. It uses a divide and conquer method for sorting, meaning it breaks the list into smaller sections, sorts these smaller sections and then merges them together to produce the final sorted list.</paragraph>
+ <paragraph index="90" node_type="writer">Intuitively merge sort works by on an array of ‘n’ elements as given below.</paragraph>
+ <paragraph index="91" node_type="writer">1. If n&lt;1, the entire array is divided into two halves and these arrays are called sub-arrays which have a size “n/2”.</paragraph>
+ <paragraph index="92" node_type="writer">2. Apply merge sort on the sub-array</paragraph>
+ <paragraph index="93" node_type="writer">3. The sub-arrays from step 2 are merged into one sorted array.</paragraph>
+ <paragraph index="94" node_type="writer">Radix Sort</paragraph>
+ <paragraph index="95" node_type="writer">One of the sorting algorithm that is highly paralleizeable is radix sort. Radix sort is a non comparison based sorting algorithm that divides the work by distributing the keys that are being sorted into buckets on the basis of a radix value. If the keys consist of multiple digits, the distribution of keys is repeated for each digit until all digits are covered. Each iteration is stable, preserving the order of the keys within each bucket from the previous iteration.</paragraph>
+ <paragraph index="96" node_type="writer">__global__ void radix_sort_iter(unsigned int* input, unsigned int* output, unsigned int* bits, unsigned int N, unsigned int iter){
+  unisnged int i = blockIdx.x * blockDim.x + threadIdx.x;</paragraph>
+ <paragraph index="97" node_type="writer">  unsigned int key, bit;
+  if(i &lt; N){
+    key = input[i];
+    bit = (key &gt;&gt; iter) &amp; i;
+    bits[i] = bit;
+ }
+  exclusiveScan();
+  if(i &lt; N){
+    unsigned int numOnesBefore = bits[i];
+    unsigned int numOnesTotal = bits[N];
+    unsigned int dst = (bit == 0) ? (i - numOnesBefore)
+			          : (N - numOnesTotal – numOnesBefore);
+    output[dst] = key;
+  }
+}</paragraph>
+ <paragraph index="98" node_type="writer">Optimizing Using Memory Coalescing</paragraph>
+ <paragraph index="99" node_type="writer">Global memory coalescing is one of the most important optimization techniques in CUDA programs because the number of memory transactions impacts the performance. Therefore, it is important to maximize coalescing by performing optimal memory data layout and the different memory addressing.</paragraph>
+ <paragraph index="100" node_type="writer">Optimizing Using Thread Coarsening</paragraph>
+ <paragraph index="101" node_type="writer">Thread coarsening is an optimization technique that merges multiple threads together reducing the total number of threads while increasing the amount of work performed by each individual thread. The transformation works by replicating instructions that depend on the thread ID by a coarsening factor – for example, with a coarsening factor of 2, each pair of consecutive threads is merged into one.</paragraph>
+ <paragraph index="102" node_type="writer">Measuring Performance </paragraph>
+ <paragraph index="103" node_type="writer">asdasdasd</paragraph>
+ <paragraph index="104" node_type="writer">Conclusions </paragraph>
+ <paragraph index="105" node_type="writer">Asdasdasd</paragraph>
+ <object index="107" name="Bibliography1" object_type="section"/>
+ <object index="108" name="Bibliography1_Head" object_type="section"/>
+ <paragraph index="109" node_type="writer" parent_index="108">Bibliography</paragraph>
+ <paragraph index="111" node_type="writer" parent_index="107">1: A. C. Sodan, J. Machina, A. Deshmeh, K. Macnaughton and B. Esbaugh, Parallelism via Multithreaded and Multicore CPUs, 2010</paragraph>
+ <paragraph index="112" node_type="writer" parent_index="107">2: E. Lindholm, J. Nickolls, S. Oberman and J. Montrym, NVIDIA Tesla: A Unified Graphics and Computing Architecture, 2008</paragraph>
+ <paragraph index="113" node_type="writer" parent_index="107">3: Glaskowsky, P.N., NVIDIA’s Fermi: The First CompleteGPU Computing Architecture, 2009</paragraph>
+ <paragraph index="114" node_type="writer" parent_index="107">4: Rohit Chandra, Parallel Programmingin OpenMP, 2000</paragraph>
+ <paragraph index="115" node_type="writer" parent_index="107">5: T. Hoshino, N. Maruyama, S. Matsuoka and R. Takaki, CUDA vs OpenACC: Performance Case Studies with Kernel Benchmarks and a Memory-Bound CFD Application., </paragraph>
+ <paragraph index="116" node_type="writer" parent_index="107">6: S. Farrelly, R. R. Manumachu and A. Lastovetsky, OpenH: A Novel Programming Model and API for Developing Portable Parallel Programs on Heterogeneous Hybrid Servers, 2024</paragraph>
+ <paragraph index="117" node_type="writer" parent_index="107">7: Wen-mei W. Hwu, Izzat El Hajj, Programming Massively Parallel Processors, Chaper 13, </paragraph>
+ <paragraph index="118" node_type="writer" parent_index="107">8: Wen-mei W. Hwu, Izzat El Hajj, Programming Massively Parallel Processors, Chaper 12, 2022</paragraph>
+ <paragraph index="119" node_type="writer" parent_index="107">9: J. Lobo and S. Kuwelker, Performance Analysis of Merge Sort Algorithms, 2020</paragraph>
+ <paragraph index="120" node_type="writer" parent_index="107">10: Dae-Hwan Kim, Evaluation Of The Performance Of GPU Global Memory Coalescing, 2015</paragraph>
+ <paragraph index="121" node_type="writer" parent_index="107">11: Alberto Magni, Christophe Dubach, Michael F.P. O’Boyle, A Large-Scale Cross-Architecture Evaluation of Thread-Coarsening, 2013</paragraph>
+ <paragraph index="125" node_type="writer">https://ieeexplore.ieee.org/abstract/document/7054183</paragraph>
+</indexing>
