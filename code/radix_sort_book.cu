@@ -1,0 +1,7 @@
+#include <cuda_runtime.h>
+#include <stdio.h>
+
+int main(){
+  int array[]={10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+  radix_sort_iter<<<2, 5>>>
+}
