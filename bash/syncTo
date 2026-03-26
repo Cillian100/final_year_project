@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rsync -v -r ~/git/finalYearProject/bash \
+            ~/git/finalYearProject/code \
+            ~/git/finalYearProject/exe \
+            cillian@hclserver2a40.ucd.ie:/home/cillian/project/
+             
