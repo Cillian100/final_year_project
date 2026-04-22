@@ -1,0 +1,52 @@
+Algorithm 1.1: Approximate chunk allocations n_i for processors P_1..P_p
+
+Input:
+  n          — total number of chunks
+  p          — number of processors
+  s_i(x)     — speed function for each processor P_i (1 ≤ i ≤ p)
+
+Output:
+  n_i        — chunk allocation for each P_i, where n_i = floor(x_i^U)
+               and either n_i = floor(x_i^O) or n_i = floor(x_i^O) - 1
+
+BEGIN
+
+  // Step 1: Initialise upper and lower bounding lines through origin
+  U ← line through (0,0) and (n/p, max_i{ s_i(n/p) })
+  L ← line through (0,0) and (n/p, min_i{ s_i(n/p) })
+
+  LOOP:
+
+    // Step 2: Find intersection of U and L with each speed function
+    FOR i = 1 TO p DO
+      x_i^U ← x such that s_i(x) lies on line U   // solve a·x = s_i(x)
+      x_i^L ← x such that s_i(x) lies on line L
+    END FOR
+
+    // Check stopping condition: all intervals [x_i^L, x_i^U] span < 1
+    IF  max_i(x_i^U - x_i^L) < 1  THEN
+      GOTO Step 5
+    END IF
+
+    // Step 3: Bisect the angle between U and L
+    M ← line through (0,0) that bisects angle(U, L)
+
+    FOR i = 1 TO p DO
+      x_i^M ← x such that s_i(x) lies on line M   // solve a·x = s_i(x)
+    END FOR
+
+    // Step 4: Replace U or L with M to narrow the bracket
+    IF  sum_i(x_i^M) ≤ n  THEN
+      L ← M                // "ideal" line is above M, tighten lower bound
+    ELSE
+      U ← M                // "ideal" line is below M, tighten upper bound
+    END IF
+
+    GOTO LOOP
+
+  // Step 5: Set allocations from the upper intersection coordinates
+  FOR i = 1 TO p DO
+    n_i ← floor(x_i^U)
+  END FOR
+
+END

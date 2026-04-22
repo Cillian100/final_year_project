@@ -13,6 +13,7 @@ int main()
     int steps = 16;
     std::vector<double> speedCPU(steps);
     std::vector<double> speedGPU(steps);
+    std::vector<double> speedRatio(steps);
 
     std::vector<long long> data(totalSize);
     printf("creating randomized vector of size %d\n", totalSize);
@@ -37,7 +38,8 @@ int main()
     n = 100;
     for (int a = 0; a < steps; a++)
     {
-        printf("%d %f %f\n", a, speedCPU[a], speedGPU[a]);
+        speedRatio[a] = speedCPU[a] / speedGPU[a];
+        printf("%d %f %f %f\n", a, speedCPU[a], speedGPU[a], speedRatio[a]);
     }
 
     FILE *fptr;
@@ -47,7 +49,7 @@ int main()
     fprintf(fptr, "sizes = [");
     for (int a = 0; a < steps; a++)
     {
-        fprintf(fptr, "%lld%s", n, a < steps ? ", " : "");
+        fprintf(fptr, "%lld%s", n, a < steps - 1 ? ", " : "");
         n = n * 10;
     }
     fprintf(fptr, "]\n");
@@ -63,6 +65,12 @@ int main()
     for (int a = 0; a < steps; a++)
     {
         fprintf(fptr, "%.0f%s", (speedCPU[a]/5), a < steps - 1 ? ", " : "");
+    }
+    fprintf(fptr, "]\n");
+
+    fprintf(fptr, "ratio = [");
+    for(int a=0;a<steps;a++){
+        fprintf(fptr, "%.3f%s", (speedRatio[a]), a < steps - 1 ? ", " : "");
     }
     fprintf(fptr, "]\n");
 
@@ -90,5 +98,18 @@ int main()
             "ax2.tick_params(axis='both', labelsize=10)\n"
             "plt.tight_layout()\n"
             "plt.savefig('dataPartition2_2.pdf', bbox_inches='tight')\n"
+            "\n\n"
+            "fig3, ax3 = plt.subplots(figsize=(7, 4.5))\n"
+            "ax3.plot(sizes, ratio, marker='o', linewidth=2, markersize=6, label='ratio between CPU sort & GPU sort')\n"
+            "ax3.set_xscale('log')\n"
+            "ax3.set_xlabel('Problem Size (Number of Elements)', fontsize=11)\n"
+            "ax3.set_ylabel('Ratio of Processing Speed', fontsize=11)\n"
+            "ax3.set_title('Ratio of CPU to GPU', fontsize=13, weight='bold')\n"
+            "ax3.legend(frameon=True)\n"
+            "ax3.grid(True, linestyle='--', alpha=0.6)\n"
+            "ax3.tick_params(axis='both', labelsize=10)\n"
+            "plt.tight_layout()\n"
+            "plt.savefig('dataPartition2_3.pdf', bbox_inches='tight')\n"
+            "\n\n"
         );
 }

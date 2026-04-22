@@ -1,12 +1,12 @@
 
 
-printf "compiling main\n"
+printf "compiling main.cpp\n"
 icpx -c main.cpp -o main.o
 
-printf "compiling cpuCode\n"
+printf "compiling cpuCode.cpp\n"
 icpx -c cpuCode.cpp -o cpu.o
 
-printf "comping gpuCode\n"
+printf "compiling gpuCode.cu\n"
 nvcc -c gpuCode.cu -o gpu.o
 
 printf "linking files\n"

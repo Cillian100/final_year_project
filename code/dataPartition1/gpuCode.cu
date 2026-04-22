@@ -6,7 +6,8 @@
 #include <thrust/generate.h>
 #include <thrust/sort.h>
 
-double measuring_cuda_speed(int n, std::vector<long long> &data){
+double measuring_cuda_speed(int n, std::vector<long long> &data, int device){
+    cudaSetDevice(device);
     thrust::device_vector<long long> buf(n);
     cudaEvent_t start, stop;
     cudaEventCreate(&start);

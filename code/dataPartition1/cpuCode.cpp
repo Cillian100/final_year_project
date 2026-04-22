@@ -1,6 +1,7 @@
 #include <vector>
 #include <oneapi/dpl/algorithm>
 #include <oneapi/dpl/execution>
+#include <chrono>
 
 double measuring_tbb_speed(int n, std::vector<long long> &data){
     std::vector<long long> buf(n);

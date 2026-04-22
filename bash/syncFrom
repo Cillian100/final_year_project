@@ -3,4 +3,6 @@
 rsync -v -r cillian@hclserver2a40.ucd.ie:/home/cillian/project/code \
             cillian@hclserver2a40.ucd.ie:/home/cillian/project/exe \
             cillian@hclserver2a40.ucd.ie:/home/cillian/project/bash \
+            cillian@hclserver2a40.ucd.ie:/home/cillian/project/graphs \
+            cillian@hclserver2a40.ucd.ie:/home/cillian/project/python \
             ~/git/finalYearProject
