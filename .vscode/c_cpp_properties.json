@@ -5,7 +5,8 @@
             "includePath": [
                 "/usr/include/**",
                 "/usr/local/cuda/include",
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/include/thrust"
             ],
             "defines": []
         }

@@ -1,0 +1,16 @@
+\begin{table}[H]
+\centering
+\caption{Comparison of typical "best case" and "worst case" in GPU and CPU sorting}
+\vspace{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Input Range} & \textbf{Unordered GPU} & \textbf{Ordered GPU} & \textbf{Unordered CPU} & \textbf{Ordered CPU}
+\midrule
+100000000 & 258 & 460 & 270 & 465\\
+200000000 & 515 & 816 & 503 & 812\\
+300000000 & 774 & 1145 & 773 & 1147\\
+400000000 & 1028 & 1487 & 1028 & 1483\\
+500000000 & 1289 & 1833 & 1291 & 1829\\
+\bottomrule
+\end{tabular}
+\end{table}

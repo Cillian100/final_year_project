@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{Runtime Analysis of Functional Model in (ms) with Range}
+\vspace{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Input range} & \textbf{GPU (ms)} & \textbf{CPU (ms)} & \textbf{ratio} \\
+\midrule
+$2^{8*1}$ & 38 & 264 & 0.143939 \\
+$2^{8*2}$ & 39 & 243 & 0.160494 \\
+$2^{8*3}$ & 40 & 210 & 0.190476 \\
+$2^{8*4}$ & 39 & 184 & 0.211957 \\
+$2^{8*5}$ & 43 & 154 & 0.279221 \\
+$2^{8*6}$ & 44 & 128 & 0.34375 \\
+$2^{8*7}$ & 45 & 98 & 0.459184 \\
+$2^{8*8}$ & 46 & 72 & 0.638889 \\
+\bottomrule
+\end{tabular}
+\end{table}

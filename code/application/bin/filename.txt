@@ -1,0 +1,32 @@
+\begin{table}[h]
+\centering
+\caption{Runtime analysis of functional model in (ms) with range 100}
+\vspace{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Array Size} & \textbf{GPU 1 (ms)} & \textbf{GPU 2 (ms)} & \textbf{CPU (ms)} & \textbf{Spread (ms)} & \textbf{Balance} \\
+\midrule
+100000000 & 0 & 0 & 0 & 0 & -9223372036854775808\% \\
+200000000 & 17 & 24 & 3 & 20 & 15\% \\
+300000000 & 3 & 2 & 22 & 20 & 10\% \\
+400000000 & 2 & 35 & 0 & 35 & 1\% \\
+500000000 & 6 & 41 & 1 & 40 & 3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[h]
+\centering
+\caption{Runtime analysis of benchmark model in (ms) with range 100}
+\vspace{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Array Size} & \textbf{GPU 1 (ms)} & \textbf{GPU 2 (ms)} & \textbf{CPU (ms)} & \textbf{Spread (ms)} & \textbf{Balance} \\
+\midrule
+100000000 & 107 & 127 & 408 & 300 & 26\% \\
+200000000 & 184 & 164 & 1127 & 962 & 14\% \\
+300000000 & 305 & 275 & 680 & 405 & 40\% \\
+400000000 & 342 & 281 & 897 & 615 & 31\% \\
+500000000 & 404 & 384 & 1086 & 702 & 35\% \\
+\bottomrule
+\end{tabular}
+\end{table}
